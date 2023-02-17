@@ -1,27 +1,33 @@
-import axios from "axios";
+import axios from 'axios'
 
 const createAPI = () => {
   const APIInstant = axios.create({
     baseURL: 'https://dummyapi.io/data/v1/',
     timeout: 10000,
-    headers: { 'app-id': '633410c907616a25b76ff87c' }
-  });
-  return APIInstant;
+    headers: {
+      'app-id': '633410c907616a25b76ff87c',
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  return APIInstant
 }
 
-const instance = createAPI();
+const instance = createAPI()
 
 function handleResult<T>(api: Promise<T>) {
-  return api.then((res: any) => {
-    return handleResponse<T>(res)
-  }).catch(async (error: any) => {
-    return handleResponse<T>(error);
-  });
+  return api
+    .then((res: any) => {
+      return handleResponse<T>(res)
+    })
+    .catch(async (error: any) => {
+      return handleResponse<T>(error)
+    })
 }
 
 function handleResponse<T>(data: any) {
   if (data.status !== 200) {
-    return Promise.reject(data);
+    return Promise.reject(data)
   }
   return Promise.resolve(data.data)
 }
