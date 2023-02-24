@@ -1,64 +1,58 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React from "react";
-import { Button, StyleSheet, View } from "react-native";
-import { RootStackParamList } from "../../constant";
+import React from 'react'
+import { FlatList, StyleSheet, View } from 'react-native'
+import { SCREEN_ROUTER_APP } from '../../constant'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useAppSelector } from '../../store'
+import { ItemTaskProps } from '../../models/TaskModels'
+import TaskItem from './components/TaskItem'
+import FloatingButton from '../../components/FloatingButton/FloatingButton'
+import { RootStackParamList } from '../../models/NavigationType'
 
-
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'HOME'>;
+type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'HOME'>
 
 interface itemProps {
-    id: string,
-    title: string,
-    onPress: () => void
+  id: string
+  title: string
+  onPress: () => void
 }
 
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
+  const { listTask } = useAppSelector(state => state.task)
 
-const HomeScreen = ({ navigation, route }: HomeScreenProps) => {
+  const onPressItem = (item: ItemTaskProps) => {
+    navigation.navigate(SCREEN_ROUTER_APP.ADD_EDIT_TASK_SCREEN, { item })
+  }
 
-    const listItem = [
-        {
-            id: '1',
-            title: 'goToAddProduct',
-            onPress: () => { navigation.navigate('ADD_EDIT_PRODCUT_SCREEN', {}) }
-        },
-        {
-            id: '2',
-            title: 'goToProductList',
-            onPress: () => { navigation.navigate('PRODUCT_LIST') }
-        },
-        {
-            id: '3',
-            title: 'goToUserList',
-            onPress: () => { navigation.navigate('USER_LIST') }
-        }
-    ]
+  const renderTaskItem = ({ item }: { item: ItemTaskProps }) => (
+    <TaskItem item={item} onPress={onPressItem} />
+  )
 
-    return (
-        <View style={styles.container}>
-            {listItem.map((item: itemProps) => {
-                return (
-                    <View
-                        style={{ marginBottom: 10 }}
-                        key={item.id}
-                    >
-                        <Button
-                            title={item.title}
-                            onPress={item.onPress}
-                        />
-                    </View>
-                )
-            })}
-        </View>
-    )
+  const onPress = () => {
+    navigation.navigate(SCREEN_ROUTER_APP.ADD_EDIT_TASK_SCREEN, {})
+  }
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        style={styles.container}
+        contentContainerStyle={styles.contentStyle}
+        data={listTask}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={renderTaskItem}
+      />
+      <FloatingButton onPress={onPress} />
+    </View>
+  )
 }
 
-export default HomeScreen;
+export default HomeScreen
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  contentStyle: {
+    paddingBottom: 10,
+  },
 })

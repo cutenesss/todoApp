@@ -55,7 +55,7 @@ exports[`render home page 1`] = `
             ]
           }
         >
-          goToAddProduct
+          goToaddTask
         </Text>
       </View>
     </View>

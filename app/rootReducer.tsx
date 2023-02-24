@@ -1,10 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import productSlice from './redux/Product/productSlice'
-import userSlice from './redux/User/userSlice'
+import taskSlice from './redux/Task/taskSlice'
 
 const rootReducer = combineReducers({
-  product: productSlice,
-  user:userSlice
+  task: taskSlice,
 })
 
 export default rootReducer

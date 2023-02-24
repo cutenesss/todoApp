@@ -1,7 +1,6 @@
 export interface ResponseType<T> {
-    status: number
-    code: number
-    message: string
-    data: T
-  }
-  
+  status: number
+  code: number
+  message: string
+  data: T
+}
