@@ -3,9 +3,9 @@
  */
 
 if (__DEV__) {
-    import('./app/config/ReactotronConfig').then(() =>
-        console.log('Reactotron Configured')
-    )
+  import('./app/config/ReactotronConfig').then(() =>
+    console.log('Reactotron Configured')
+  )
 }
 import App from './App'
 import { name as appName } from './app.json'

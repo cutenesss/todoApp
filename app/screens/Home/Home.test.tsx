@@ -4,15 +4,15 @@
 
 import React from 'react'
 import renderer from 'react-test-renderer'
+import HomeScreen from '.'
 import { Provider } from 'react-redux'
-import store from '../app/store'
-import AddEditTaskScreen from '../app/screens/AddEditTask'
+import store from '../../store'
 
-test('render add task list page', () => {
+test('render home page', () => {
   const tree = renderer
     .create(
       <Provider store={store}>
-        <AddEditTaskScreen />
+        <HomeScreen />
       </Provider>
     )
     .toJSON()

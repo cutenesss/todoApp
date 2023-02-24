@@ -6,9 +6,10 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "pod": "cd ios && pod install && cd .."
+    "pod": "cd ios && pod install && cd ..",
+    "test": "jest test --coverage --config=jest.coverage.config.js",
+    "test:view-coverage": "open ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",

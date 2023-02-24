@@ -7,7 +7,7 @@ interface FloatingButtonProps {
   colorText?: string
 }
 
-const FloatingButton = (props: FloatingButtonProps) => {
+export const FloatingButton = (props: FloatingButtonProps) => {
   const { onPress, colorText, customStyle } = props
   return (
     <TouchableOpacity
@@ -18,8 +18,6 @@ const FloatingButton = (props: FloatingButtonProps) => {
     </TouchableOpacity>
   )
 }
-
-export default FloatingButton
 
 const styles = StyleSheet.create({
   buttonView: {

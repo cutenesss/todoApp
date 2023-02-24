@@ -5,7 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useAppSelector } from '../../store'
 import { ItemTaskProps } from '../../models/TaskModels'
 import TaskItem from './components/TaskItem'
-import FloatingButton from '../../components/FloatingButton/FloatingButton'
+import { FloatingButton } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'HOME'>
@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
   )
 
   const onPress = () => {
-    navigation.navigate(SCREEN_ROUTER_APP.ADD_EDIT_TASK_SCREEN, {})
+    navigation.navigate(SCREEN_ROUTER_APP.ADD_EDIT_TASK_SCREEN)
   }
 
   return (

@@ -13,7 +13,7 @@ interface InputProps {
   keyboardType?: KeyboardTypeOptions
 }
 
-const MInput = forwardRef((props: InputProps, ref: any) => {
+export const MInput = forwardRef((props: InputProps, ref: any) => {
   const { isSecure, containerStyle, keyboardType, defaultText } = props
 
   const [text, setText] = useState(defaultText || '')
@@ -64,5 +64,3 @@ MInput.defaultProps = {
     marginTop: 0,
   },
 }
-
-export default MInput
