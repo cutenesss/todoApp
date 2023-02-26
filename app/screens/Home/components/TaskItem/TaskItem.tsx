@@ -1,16 +1,16 @@
 import React from 'react'
 import { Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { ItemTaskProps } from '../../../models/TaskModels'
+import { ItemTaskProps } from '../../../../models/TaskModels'
 
 interface TaskItemInterface {
   item: ItemTaskProps
   onPress: (item: ItemTaskProps) => void
 }
 
-const TaskItem = (props: TaskItemInterface) => {
-  const { item, onPress } = props
+const ItemTaskMemo = ({ item, onPress }: TaskItemInterface) => {
   return (
     <TouchableOpacity
+      testID={`TaskItem_${item.id}`}
       style={[styles.boxShadow, styles.itemContainer]}
       onPress={() => onPress(item)}
     >
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default React.memo(TaskItem)
+export const TaskItem = React.memo(ItemTaskMemo);

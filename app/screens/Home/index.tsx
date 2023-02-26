@@ -4,7 +4,7 @@ import { SCREEN_ROUTER_APP } from '../../constant'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useAppSelector } from '../../store'
 import { ItemTaskProps } from '../../models/TaskModels'
-import TaskItem from './components/TaskItem'
+import { TaskItem } from './components/TaskItem/TaskItem'
 import { FloatingButton } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
 

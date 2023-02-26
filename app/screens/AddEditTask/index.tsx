@@ -37,13 +37,13 @@ const AddEditTaskScreen = ({ route }: AddEditTaskScreenProps) => {
   return (
     <View style={styles.container}>
       <MInput
-        placeHolder="Name"
+        placeholder="Name"
         containerStyle={styles.input}
         ref={nameRef}
         defaultText={itemTask?.name ?? ''}
       />
       <MInput
-        placeHolder="Description"
+        placeholder="Description"
         containerStyle={styles.input}
         ref={descriptionRef}
         defaultText={itemTask?.description ?? ''}

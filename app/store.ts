@@ -14,6 +14,7 @@ const store = configureStore({
 })
 
 export type AppDispatch = typeof store.dispatch
+/* istanbul ignore next */
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export type RootState = ReturnType<typeof store.getState>
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

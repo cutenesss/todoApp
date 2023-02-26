@@ -1,21 +1,15 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
-import { View, TextInput, StyleSheet, KeyboardTypeOptions } from 'react-native'
-
-interface containerStyle {
-  marginTop: number
-}
+import { View, TextInput, StyleSheet, ViewStyle } from 'react-native'
 
 interface InputProps {
-  isSecure?: boolean
-  containerStyle?: containerStyle
+  testId?: string
+  isSecured?: boolean
+  containerStyle?: ViewStyle
   defaultText?: string
-  placeHolder?: string
-  keyboardType?: KeyboardTypeOptions
+  placeholder?: string
 }
 
-export const MInput = forwardRef((props: InputProps, ref: any) => {
-  const { isSecure, containerStyle, keyboardType, defaultText } = props
-
+export const MInput = forwardRef(({ testId, placeholder, isSecured, containerStyle, defaultText }: InputProps, ref: any) => {
   const [text, setText] = useState(defaultText || '')
 
   useImperativeHandle(
@@ -32,13 +26,13 @@ export const MInput = forwardRef((props: InputProps, ref: any) => {
   )
 
   return (
-    <View ref={ref} style={[containerStyle && containerStyle]}>
+    <View testID={`MInput_view_${testId}`} ref={ref} style={containerStyle}>
       <TextInput
-        secureTextEntry={isSecure || MInput.defaultProps?.isSecure}
-        placeholder={props?.placeHolder ?? ''}
+        testID={`MInput_input_${testId}`}
+        secureTextEntry={isSecured || MInput.defaultProps?.isSecured}
+        placeholder={placeholder || ''}
         style={styles.input}
         value={text}
-        keyboardType={keyboardType}
         onChangeText={(value: string) => {
           setText(value)
         }}
@@ -59,8 +53,5 @@ const styles = StyleSheet.create({
 })
 
 MInput.defaultProps = {
-  isSecure: false,
-  containerStyle: {
-    marginTop: 0,
-  },
+  isSecured: false,
 }

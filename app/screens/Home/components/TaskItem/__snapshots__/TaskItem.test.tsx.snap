@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TaskItem /> renders correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderRadius": 10,
+      "elevation": 5,
+      "margin": 10,
+      "opacity": 1,
+      "padding": 10,
+      "shadowColor": "#000",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.25,
+      "shadowRadius": 3.84,
+    }
+  }
+  testID="TaskItem_123"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 15,
+      }
+    }
+  >
+    Name: 
+    name
+  </Text>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "marginTop": 10,
+      }
+    }
+  >
+    Description: 
+    description
+  </Text>
+</View>
+`;
