@@ -8,7 +8,9 @@ import { TaskItem } from './components/TaskItem/TaskItem'
 import { FloatingButton } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
 
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'HOME'>
+export type HomeScreenProps = {
+  navigation: NativeStackScreenProps<RootStackParamList, 'HOME'>['navigation']
+}
 
 interface itemProps {
   id: string
@@ -37,7 +39,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         style={styles.container}
         contentContainerStyle={styles.contentStyle}
         data={listTask}
-        keyExtractor={(_, index) => index.toString()}
+        keyExtractor={(itemTask) => itemTask.id.toString()}
         renderItem={renderTaskItem}
       />
       <FloatingButton onPress={onPress} />

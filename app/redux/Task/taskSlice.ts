@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ItemTaskProps } from '../../models/TaskModels'
 
-export interface ProductState {
+export interface TaskState {
   listTask: Array<ItemTaskProps>
 }
 
-const initialState: ProductState = {
+const initialState: TaskState = {
   listTask: [],
 }
 

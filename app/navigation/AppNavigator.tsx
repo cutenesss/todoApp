@@ -28,11 +28,7 @@ interface mainItem {
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator
-        screenOptions={() => ({
-          // headerShown: false,
-        })}
-      >
+      <RootStack.Navigator>
         {mainScreen.map((mainItem: mainItem) => {
           return (
             <RootStack.Screen

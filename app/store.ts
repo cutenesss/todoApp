@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, PreloadedState } from '@reduxjs/toolkit'
 import RootReducer from './rootReducer'
 import Reactotron from './config/ReactotronConfig'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -7,16 +7,17 @@ import DebugConfig from './config/DebugConfig'
 
 // const enhancers = DebugConfig.reactotron ? [Reactotron.createEnhancer!()] : []
 
-const store = configureStore({
-  reducer: RootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: RootReducer,
+    middleware: getDefaultMiddleware => getDefaultMiddleware(),
+    preloadedState
   // enhancers,
-})
+  })
+}
 
-export type AppDispatch = typeof store.dispatch
-/* istanbul ignore next */
-export const useAppDispatch = () => useDispatch<AppDispatch>()
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof RootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']
+export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-
-export default store
