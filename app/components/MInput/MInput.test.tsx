@@ -8,7 +8,6 @@ const VIEW_TEST_ID_MINPUT = 'MInput_view_INPUT_1'
 const INPUT_TEST_ID_MINPUT = 'MInput_input_INPUT_1'
 
 describe("<MInput />", () => {
-    const mockOnPress = jest.fn();
     const defaultProps ={
         testId: TEST_ID_MINPUT,
         isSecured: false,

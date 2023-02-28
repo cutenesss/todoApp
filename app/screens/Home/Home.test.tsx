@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import {setupStore} from '../../store';
 import { renderWithProviders } from '../../utils/testUtils';
 import { addTask } from '../../redux';
+import { TaskItem } from './components/TaskItem';
 
 const testTask = {
   id: 123,
@@ -13,7 +14,7 @@ const testTask = {
   description: 'description'
 }
 
-describe("<FloatingButton />", () => {
+describe("<Home />", () => {
   const navigateMock = jest.fn();
   const navigation: any = {
     navigate: navigateMock
@@ -39,22 +40,14 @@ describe("<FloatingButton />", () => {
     fireEvent.press(screen.getByText("+"));
     expect(navigateMock).toBeCalledTimes(1);
   });
-  // it('renders correctly', () => {
-  //   const tree = renderer
-  //     .create(
-  //       <Provider store={store}>
-  //         <HomeScreen navigation={navigation} />
-  //       </Provider>
-  //     )
-  //     .toJSON()
-  //   expect(tree).toMatchSnapshot();
-  // });
 
   it('onPressItem works correctly', () => {
     const store = setupStore()
     store.dispatch(addTask(testTask))
-  
-    const { getByTestId } = renderWithProviders(<HomeScreen navigation={navigation} />, { store })
-    expect(getByTestId('TaskItem_123')).toBeTruthy();
+    //something wrong with the documents of react testing library that make this function not working anymore
+    const tree = renderWithProviders(<HomeScreen navigation={navigation} />, { store })
+    expect(tree.root.findByType(TaskItem).props.item.name).toBe('TaskItem_123');
+    // fireEvent.press(screen.getByText("name"));
+    // expect(navigateMock).toBeCalledTimes(1);
   });
 });

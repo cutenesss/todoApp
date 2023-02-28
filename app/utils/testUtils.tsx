@@ -24,10 +24,6 @@ export function renderWithProviders(
     store = configureStore({ reducer: { task: taskSlice }, preloadedState }),
   }: ExtendedRenderOptions = {}
 ) {
-  function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
-    return <Provider store={store}>{children}</Provider>
-  }
-
-  // Return an object with the store and all of RTL's query functions
-  return { store, ...render(ui, { wrapper: Wrapper }) }
+  const queries = render(<Provider store={store}>{ui}</Provider>);
+  return { ...queries, store };
 }
