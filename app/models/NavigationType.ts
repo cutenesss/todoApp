@@ -1,7 +1,7 @@
 import { ItemTaskProps } from './TaskModels'
 
 export type RootStackParamList = {
-  ADD_EDIT_TASK_SCREEN: {
+  VIEW_TASK: {
     item?: ItemTaskProps
   }
   HOME: undefined

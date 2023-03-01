@@ -14,11 +14,14 @@ const ItemTaskMemo = ({ item, onPress }: TaskItemInterface) => {
       style={[styles.boxShadow, styles.itemContainer]}
       onPress={() => onPress(item)}
     >
-      <Text style={styles.idTxt} numberOfLines={1}>
-        Name: {item.name}
+      <Text style={styles.nameText} numberOfLines={1}>
+        {`Name: ${item.name} - ${item.isCompleted ? 'Completed' : 'Not complete'}`}
       </Text>
-      <Text style={styles.nameTxt} numberOfLines={1}>
+      <Text style={styles.descriptionText} numberOfLines={1}>
         Description: {item.description}
+      </Text>
+      <Text style={styles.descriptionText} numberOfLines={1}>
+        Priority level: {item.priorityLevel}
       </Text>
     </TouchableOpacity>
   )
@@ -31,11 +34,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
   },
-  idTxt: {
+  nameText: {
     fontSize: 15,
     color: '#000',
   },
-  nameTxt: {
+  descriptionText: {
     fontSize: 13,
     color: '#000',
     fontWeight: 'bold',

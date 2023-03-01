@@ -30,7 +30,7 @@ const AddEditTaskScreen = ({ route }: AddEditTaskScreenProps) => {
     } else if (itemTask?.name !== undefined) {
       dispatch(
         editTask({
-          idOldItem: itemTask.id,
+          idItem: itemTask.id,
           newItem: {
             id: itemTask.id,
             name: nameRef.current.getText(),

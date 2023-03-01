@@ -151,7 +151,7 @@ export const initialState: TaskState = {
 }
 &nbsp;
 interface editTaskBody {
-  idOldItem: number
+  idItem: number
   newItem: ItemTaskProps
 }
 &nbsp;
@@ -164,7 +164,7 @@ const TaskSlice = createSlice({
     },
     editTask(state, action: PayloadAction&lt;editTaskBody&gt;) {
       const currentItemIndex = state.listTask.findIndex(
-        task =&gt; task.id === action.payload.idOldItem
+        task =&gt; task.id === action.payload.idItem
       )
       const newListTask = [...state.listTask]
       newListTask[currentItemIndex].description =

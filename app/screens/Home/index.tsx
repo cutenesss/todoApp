@@ -4,9 +4,10 @@ import { SCREEN_ROUTER_APP } from '../../constant'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useAppSelector } from '../../store'
 import { ItemTaskProps } from '../../models/TaskModels'
-import { TaskItem } from './components/TaskItem/TaskItem'
+import { TaskItem } from './components/TaskItem'
 import { FloatingButton } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
+import { ViewOverallNumber } from './components/ViewOverallNumber'
 
 export type HomeScreenProps = {
   navigation: NativeStackScreenProps<RootStackParamList, 'HOME'>['navigation']
@@ -19,10 +20,10 @@ interface itemProps {
 }
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
-  const { listTask } = useAppSelector(state => state.task)
+  const { listTask, completedTask } = useAppSelector(state => state.task)
 
   const onPressItem = (item: ItemTaskProps) => {
-    navigation.navigate(SCREEN_ROUTER_APP.ADD_EDIT_TASK_SCREEN, { item })
+    navigation.navigate(SCREEN_ROUTER_APP.VIEW_TASK, { item })
   }
 
   const renderTaskItem = ({ item }: { item: ItemTaskProps }) => (
@@ -30,12 +31,15 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
   )
 
   const onPress = () => {
-    navigation.navigate(SCREEN_ROUTER_APP.ADD_EDIT_TASK_SCREEN, {})
+    navigation.navigate(SCREEN_ROUTER_APP.VIEW_TASK, {})
   }
 
   return (
     <View style={styles.container}>
       <FlatList
+        ListHeaderComponent={
+          <ViewOverallNumber totalTask={listTask.length} completedTask={completedTask} />
+        }
         style={styles.container}
         contentContainerStyle={styles.contentStyle}
         data={listTask}

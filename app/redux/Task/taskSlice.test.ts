@@ -30,7 +30,7 @@ describe("tests for taskSlice", () => {
         const afterEditReducerOperation = TaskSlice(
             { listTask: [testData] },
             editTask({
-                idOldItem: testData.id,
+                idItem: testData.id,
                 newItem: testEditData
             })
         );

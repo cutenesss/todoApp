@@ -7,9 +7,10 @@ interface InputProps {
   containerStyle?: ViewStyle
   defaultText?: string
   placeholder?: string
+  editable?: boolean
 }
 
-export const MInput = forwardRef(({ testId, placeholder, isSecured, containerStyle, defaultText }: InputProps, ref: any) => {
+export const MInput = forwardRef(({ editable, testId, placeholder, isSecured, containerStyle, defaultText }: InputProps, ref: any) => {
   const [text, setText] = useState(defaultText || '')
 
   useImperativeHandle(
@@ -33,6 +34,7 @@ export const MInput = forwardRef(({ testId, placeholder, isSecured, containerSty
         placeholder={placeholder || ''}
         style={styles.input}
         value={text}
+        editable={editable}
         onChangeText={(value: string) => {
           setText(value)
         }}
