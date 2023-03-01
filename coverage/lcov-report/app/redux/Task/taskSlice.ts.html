@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -108,7 +108,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,27 +117,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ItemTaskProps } from '../../models/TaskModels'
@@ -146,7 +146,7 @@ export interface TaskState {
   listTask: Array&lt;ItemTaskProps&gt;
 }
 &nbsp;
-export const initialState: TaskState = <span class="cstat-no" title="statement not covered" >{</span>
+export const initialState: TaskState = {
   listTask: [],
 }
 &nbsp;
@@ -155,27 +155,27 @@ interface editTaskBody {
   newItem: ItemTaskProps
 }
 &nbsp;
-const TaskSlice = <span class="cstat-no" title="statement not covered" >createSlice({</span>
+const TaskSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
-<span class="fstat-no" title="function not covered" >    ad</span>dTask(state, action: PayloadAction&lt;ItemTaskProps&gt;) {
-<span class="cstat-no" title="statement not covered" >      state.listTask = state.listTask.concat(action.payload)</span>
+    addTask(state, action: PayloadAction&lt;ItemTaskProps&gt;) {
+      state.listTask = state.listTask.concat(action.payload)
     },
-<span class="fstat-no" title="function not covered" >    ed</span>itTask(state, action: PayloadAction&lt;editTaskBody&gt;) {
-      const currentItemIndex = <span class="cstat-no" title="statement not covered" >state.listTask.findIndex(</span>
-<span class="fstat-no" title="function not covered" >        ta</span>sk =&gt; <span class="cstat-no" title="statement not covered" >task.id === action.payload.idOldItem</span>
+    editTask(state, action: PayloadAction&lt;editTaskBody&gt;) {
+      const currentItemIndex = state.listTask.findIndex(
+        task =&gt; task.id === action.payload.idOldItem
       )
-      const newListTask = <span class="cstat-no" title="statement not covered" >[...state.listTask]</span>
-<span class="cstat-no" title="statement not covered" >      newListTask[currentItemIndex].description =</span>
+      const newListTask = [...state.listTask]
+      newListTask[currentItemIndex].description =
         action.payload.newItem.description
-<span class="cstat-no" title="statement not covered" >      newListTask[currentItemIndex].name = action.payload.newItem.name</span>
-<span class="cstat-no" title="statement not covered" >      state.listTask = newListTask</span>
+      newListTask[currentItemIndex].name = action.payload.newItem.name
+      state.listTask = newListTask
     },
   },
 })
 &nbsp;
-export const { addTask, editTask } = <span class="cstat-no" title="statement not covered" >TaskSlice.actions</span>
+export const { addTask, editTask } = TaskSlice.actions
 export default TaskSlice.reducer
 &nbsp;</pre></td></tr></table></pre>
 
@@ -184,7 +184,7 @@ export default TaskSlice.reducer
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-01T10:35:56.619Z
+                at 2023-03-01T13:52:10.460Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
