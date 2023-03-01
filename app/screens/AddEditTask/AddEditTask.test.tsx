@@ -1,10 +1,9 @@
 import React from 'react';
+import { Alert } from 'react-native';
 import renderer from 'react-test-renderer';
-import { render, fireEvent, screen } from '@testing-library/react-native';
+import { render, fireEvent, } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import { setupStore } from '../../store';
-import { renderWithProviders } from '../../utils/testUtils';
-import { addTask } from '../../redux';
 import AddEditTaskScreen from '.';
 
 const ID_INPUT_NAME = 'MInput_input_Name'
@@ -21,7 +20,7 @@ const testRoute: any = {
 }
 
 describe("<AddEditTask />", () => {
-  it('renders with no item correctly', () => {
+  test('renders with no item correctly', () => {
     const tree = renderer
       .create(
         <Provider store={setupStore()}>
@@ -32,7 +31,7 @@ describe("<AddEditTask />", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders with item correctly', () => {
+  test('renders with item correctly', () => {
     const tree = render
       (
         <Provider store={setupStore()}>
@@ -43,7 +42,7 @@ describe("<AddEditTask />", () => {
     expect(tree.getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('description');
   });
 
-  it('add item correctly', () => {
+  test('add item correctly', () => {
     const {getByTestId, getByText} = render
       (
         <Provider store={setupStore()}>
@@ -59,7 +58,24 @@ describe("<AddEditTask />", () => {
     expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('')
     fireEvent.changeText(inputDescription, 'description');
     expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('description')
+    jest.spyOn(Alert, 'alert');
     fireEvent.press(getByText('Add'));
-    expect(getByText('Add success')).toBeTruthy()
+    expect(Alert.alert).toHaveBeenCalledWith('Add success')
+  });
+  
+  test('add item without name', () => {
+    const {getByTestId, getByText} = render
+      (
+        <Provider store={setupStore()}>
+          <AddEditTaskScreen />
+        </Provider>
+      )
+    const inputDescription = getByTestId(ID_INPUT_DESCRIPTION);
+    expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('')
+    fireEvent.changeText(inputDescription, 'description');
+    expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('description')
+    jest.spyOn(Alert, 'alert');
+    fireEvent.press(getByText('Add'));
+    expect(Alert.alert).toHaveBeenCalledWith("Enter task's name")
   });
 });

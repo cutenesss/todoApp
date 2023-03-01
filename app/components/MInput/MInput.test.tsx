@@ -18,19 +18,19 @@ describe("<MInput />", () => {
         }
     }
 
-    it('renders correctly', () => {
+    test('renders correctly', () => {
         const ref = React.createRef();
         const tree = renderer.create(<MInput ref={ref} {...defaultProps} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    it('getText works correctly', () => {
+    test('getText works correctly', () => {
         const ref = React.createRef<any>();
         render(<MInput ref={ref} {...defaultProps} />).toJSON();
         expect(ref.current.getText()).toBe(defaultProps.defaultText);
     });
 
-    it('resetText works correctly', () => {
+    test('resetText works correctly', () => {
         const ref = React.createRef<any>();
         render(<MInput ref={ref} {...defaultProps} />).toJSON();
         expect(ref.current.getText()).toBe(defaultProps.defaultText);
@@ -38,7 +38,7 @@ describe("<MInput />", () => {
         expect(ref.current.getText()).toBe('');
     });
 
-    it('props works correctly', () => {
+    test('props works correctly', () => {
         const ref = React.createRef();
         const input = render(<MInput ref={ref} {...defaultProps} />);
         expect(input.getByTestId(VIEW_TEST_ID_MINPUT).props.style.borderColor).toBe(defaultProps.containerStyle.borderColor)
@@ -47,19 +47,19 @@ describe("<MInput />", () => {
         expect(input.getByTestId(INPUT_TEST_ID_MINPUT).props.secureTextEntry).toBe(defaultProps.isSecured)
     });
 
-    it('undefined defaultText works correctly', () => {
+    test('undefined defaultText works correctly', () => {
         const ref = React.createRef();
         const input = render(<MInput ref={ref} {...defaultProps} defaultText={undefined} />);
         expect(input.getByTestId(INPUT_TEST_ID_MINPUT).props.value).toBe('')
     });
 
-    it('undefined placeholder works correctly', () => {
+    test('undefined placeholder works correctly', () => {
         const ref = React.createRef();
         const input = render(<MInput ref={ref} {...defaultProps} placeholder={undefined} />);
         expect(input.getByTestId(INPUT_TEST_ID_MINPUT).props.placeholder).toBe('')
     });
 
-    it('setText works correctly', () => {
+    test('setText works correctly', () => {
         const ref = React.createRef();
         const {getByTestId} = render(<MInput ref={ref} {...defaultProps} />);
         const input = getByTestId(INPUT_TEST_ID_MINPUT);
@@ -68,7 +68,7 @@ describe("<MInput />", () => {
         expect(getByTestId(INPUT_TEST_ID_MINPUT).props.value).toBe('123')
     });
 
-    it('undefined containerStyle works correctly', () => {
+    test('undefined containerStyle works correctly', () => {
         const ref = React.createRef();
         const input = render(<MInput ref={ref} {...defaultProps} defaultText={undefined} />);
         expect(input.getByTestId(VIEW_TEST_ID_MINPUT).props.style.marginTop).toBe(undefined)

@@ -13,12 +13,12 @@ describe("<TaskItem />", () => {
         },
         onPress: mockOnPress
     }
-    it('renders correctly', () => {
+    test('renders correctly', () => {
         const tree = renderer.create(<TaskItem {...defaultProps} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    it('onPress works correctly', () => {
+    test('onPress works correctly', () => {
         const itemTask = render(<TaskItem {...defaultProps} />);
         fireEvent.press(itemTask.getByTestId("TaskItem_123"));
         expect(mockOnPress).toBeCalledTimes(1);

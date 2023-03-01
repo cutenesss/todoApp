@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react'
 import { Text, StyleSheet, TouchableOpacity, View, Alert } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { addTask } from '../../redux'
+import { addTask, editTask } from '../../redux'
 import { useAppDispatch } from '../../store'
 import { MInput } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
@@ -27,6 +27,20 @@ const AddEditTaskScreen = ({ route }: AddEditTaskScreenProps) => {
   const addTaskItem = () => {
     if (nameRef.current.getText() === '') {
       Alert.alert("Enter task's name")
+    } else if (itemTask?.name !== undefined) {
+      dispatch(
+        editTask({
+          idOldItem: itemTask.id,
+          newItem: {
+            id: itemTask.id,
+            name: nameRef.current.getText(),
+            description: descriptionRef.current.getText(),
+          }
+        })
+      )
+      /* istanbul ignore next */
+      resetText()
+      Alert.alert('Edit success')
     } else {
       dispatch(
         addTask({
@@ -58,7 +72,7 @@ const AddEditTaskScreen = ({ route }: AddEditTaskScreenProps) => {
         defaultText={itemTask?.description ?? ''}
       />
       <TouchableOpacity onPress={addTaskItem} style={styles.button}>
-        <Text style={styles.buttonText}>Add</Text>
+        <Text style={styles.buttonText}>{itemTask ? 'Edit' : 'Add'}</Text>
       </TouchableOpacity>
     </View>
   )

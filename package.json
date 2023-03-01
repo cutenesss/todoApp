@@ -62,6 +62,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "setupFiles": [
+      "./jest.config.js"
     ]
   }
 }

@@ -2,10 +2,9 @@ import axios from 'axios'
 
 const createAPI = () => {
   const APIInstant = axios.create({
-    baseURL: 'https://dummyapi.io/data/v1/',
+    baseURL: '',
     timeout: 10000,
     headers: {
-      'app-id': '633410c907616a25b76ff87c',
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },

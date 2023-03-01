@@ -5,7 +5,7 @@ export interface TaskState {
   listTask: Array<ItemTaskProps>
 }
 
-const initialState: TaskState = {
+export const initialState: TaskState = {
   listTask: [],
 }
 
