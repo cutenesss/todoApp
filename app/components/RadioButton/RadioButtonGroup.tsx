@@ -6,11 +6,17 @@ import { PRIORITY_LEVEL } from '../../constant';
 interface RadioButtonGroupProps {
     onPress: (value: PRIORITY_LEVEL) => void
     customStyle?: ViewStyle
-    initList?: Array<RadioButtonProps>
+    initList?: Array<any>
     title: string
     initValue?: PRIORITY_LEVEL
     disabled?: boolean
 }
+
+
+var radio_props = [
+    { label: 'param1', value: 0 },
+    { label: 'param2', value: 1 }
+];
 
 const RadioButtonGroup = ({ initList, onPress, customStyle, title, initValue, disabled }: RadioButtonGroupProps) => {
     const [listPriority, setListPriority] = React.useState<Array<RadioButtonProps>>([])

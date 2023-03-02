@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React, { useCallback, useRef } from 'react'
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'

@@ -3,13 +3,8 @@ import renderer from 'react-test-renderer';
 import { render, fireEvent, screen } from '@testing-library/react-native';
 import HomeScreen from '.';
 import { Provider } from 'react-redux';
-import {setupStore} from '../../store';
-
-const testTask = {
-  id: 123,
-  name: 'name',
-  description: 'description'
-}
+import { setupStore } from '../../store';
+import { testItemSlice } from '../../redux/Task/taskSlice.test';
 
 describe("<Home />", () => {
   test('renders correctly', () => {
@@ -34,7 +29,8 @@ describe("<Home />", () => {
     };
     const initialState = {
       task: {
-        listTask: [testTask]
+        listTask: [testItemSlice],
+        completedTask: 0
       }
     };
     const store = setupStore(initialState)

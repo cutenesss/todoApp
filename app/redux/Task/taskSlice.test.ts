@@ -1,15 +1,12 @@
-import TaskSlice, { initialState, addTask, editTask } from "./taskSlice";
+import { PRIORITY_LEVEL } from "../../constant";
+import TaskSlice, { initialState, addTask, completeTask, deleteTask } from "./taskSlice";
 
-const testData = {
+export const testItemSlice = {
     id: 123,
     name: 'name',
-    description: 'description'
-};
-
-const testEditData = {
-    id: 123,
-    name: 'testEditData',
-    description: 'description'
+    description: 'description',
+    isCompleted: false,
+    priorityLevel: PRIORITY_LEVEL.NORMAL,
 };
 
 describe("tests for taskSlice", () => {
@@ -21,19 +18,25 @@ describe("tests for taskSlice", () => {
     test("addTask", () => {
         const afterAddReducerOperation = TaskSlice(
             initialState,
-            addTask(testData)
+            addTask(testItemSlice)
         );
-        expect(afterAddReducerOperation.listTask[0].name).toBe(testData.name)
+        expect(afterAddReducerOperation.listTask[0].name).toBe(testItemSlice.name)
     });
 
-    test("editTask", () => {
+    test("completeTask", () => {
         const afterEditReducerOperation = TaskSlice(
-            { listTask: [testData] },
-            editTask({
-                idItem: testData.id,
-                newItem: testEditData
-            })
+            { listTask: [testItemSlice], completedTask: 0 },
+            completeTask({ idItem: testItemSlice.id })
         );
-        expect(afterEditReducerOperation.listTask[0].name).toBe(testEditData.name)
+        expect(afterEditReducerOperation.listTask[0].isCompleted).toBe(true)
+        expect(afterEditReducerOperation.completedTask).toBe(1)
+    });
+
+    test("deleteTask", () => {
+        const afterEditReducerOperation = TaskSlice(
+            { listTask: [testItemSlice], completedTask: 0 },
+            deleteTask({ idItem: testItemSlice.id })
+        );
+        expect(afterEditReducerOperation.listTask.length).toBe(0)
     });
 });

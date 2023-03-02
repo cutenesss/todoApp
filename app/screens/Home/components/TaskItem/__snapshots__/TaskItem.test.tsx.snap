@@ -40,8 +40,7 @@ exports[`<TaskItem /> renders correctly 1`] = `
       }
     }
   >
-    Name: 
-    name
+    Name: name - Not complete
   </Text>
   <Text
     numberOfLines={1}
@@ -56,6 +55,20 @@ exports[`<TaskItem /> renders correctly 1`] = `
   >
     Description: 
     description
+  </Text>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "marginTop": 10,
+      }
+    }
+  >
+    Priority level: 
+    Normal
   </Text>
 </View>
 `;
