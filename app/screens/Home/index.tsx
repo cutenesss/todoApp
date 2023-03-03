@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { SCREEN_ROUTER_APP } from '../../constant'
+import { NAME_SORT_ORDER, PRIORITY_LEVEL, PRIORITY_SORT_ORDER, SCREEN_ROUTER_APP } from '../../constant'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useAppSelector } from '../../store'
+import { useAppDispatch, useAppSelector } from '../../store'
 import { ItemTaskProps } from '../../models/TaskModels'
 import { TaskItem } from './components/TaskItem'
 import { FloatingButton } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
 import { ViewOverallNumber } from './components/ViewOverallNumber'
+import { handleSortListTask } from '../../utils'
+import { setListTask } from '../../redux'
 
 export type HomeScreenProps = {
   navigation: NativeStackScreenProps<RootStackParamList, 'HOME'>['navigation']
@@ -21,6 +23,19 @@ interface itemProps {
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { listTask, completedTask } = useAppSelector(state => state.task)
+  const dispatch = useAppDispatch()
+
+  const [list, setList] = useState(listTask)
+  const [priorityOrder, setPriorityOrder] = useState(PRIORITY_SORT_ORDER.DECREASE)
+  const [nameOrder, setNameOrder] = useState(NAME_SORT_ORDER.A_Z)
+
+  React.useEffect(() => {
+    if (listTask.length > 0) {
+      console.log('dasdaad', priorityOrder, nameOrder)
+      setList(handleSortListTask(listTask, priorityOrder, nameOrder))
+    }
+  }, [listTask.length, priorityOrder, nameOrder])
+
 
   const onPressItem = (item: ItemTaskProps) => {
     navigation.navigate(SCREEN_ROUTER_APP.VIEW_TASK, { item })
@@ -34,15 +49,29 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     navigation.navigate(SCREEN_ROUTER_APP.VIEW_TASK, {})
   }
 
+  const onChangeSortName = (value: NAME_SORT_ORDER) => {
+    setNameOrder(value)
+  }
+
+  const onChangeSortPriority = (value: PRIORITY_SORT_ORDER) => {
+    setPriorityOrder(value)
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
         ListHeaderComponent={
-          <ViewOverallNumber totalTask={listTask.length} completedTask={completedTask} />
+          <ViewOverallNumber
+            totalTask={listTask.length}
+            completedTask={completedTask}
+            onChangeSortName={onChangeSortName}
+            onChangeSortPriority={onChangeSortPriority}
+          />
         }
         style={styles.container}
         contentContainerStyle={styles.contentStyle}
-        data={listTask}
+        data={list}
+        extraData={list}
         keyExtractor={(itemTask) => itemTask.id.toString()}
         renderItem={renderTaskItem}
       />

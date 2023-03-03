@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RadioButtonGroup /> RadioButtonGroup correctly 1`] = `
+<View>
+  <Text
+    style={
+      Object {
+        "marginBottom": 4,
+        "marginTop": 16,
+      }
+    }
+  >
+    Priority
+  </Text>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+        },
+        Object {
+          "flexDirection": "column",
+        },
+        Object {
+          "alignItems": "flex-start",
+        },
+      ]
+    }
+  />
+</View>
+`;

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { ItemTaskProps } from '../../../../models/TaskModels'
+import { getPriorityLevel } from '../../../../utils'
 
 interface TaskItemInterface {
   item: ItemTaskProps
@@ -21,7 +22,7 @@ const ItemTaskMemo = ({ item, onPress }: TaskItemInterface) => {
         Description: {item.description}
       </Text>
       <Text style={styles.descriptionText} numberOfLines={1}>
-        Priority level: {item.priorityLevel}
+        Priority level: {getPriorityLevel(item.priorityLevel)}
       </Text>
     </TouchableOpacity>
   )
@@ -36,13 +37,13 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 15,
+    fontWeight: 'bold',
     color: '#000',
   },
   descriptionText: {
     fontSize: 13,
     color: '#000',
-    fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: 8,
   },
   boxShadow: {
     shadowColor: '#000',

@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import React, { useCallback, useRef } from 'react'
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -7,8 +6,8 @@ import { useAppDispatch } from '../../store'
 import { MInput } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
 import { PRIORITY_LEVEL } from '../../constant';
-import RadioButtonGroup from '../../components/RadioButton/RadioButtonGroup'
-import { onAlert } from '../../utils/alertFunction/alertFunction'
+import { RadioButtonGroup } from '../../components'
+import { getPriorityLevel, onAlert } from '../../utils'
 
 export type ViewTaskScreenProps = {
     navigation: NativeStackScreenProps<RootStackParamList, 'HOME'>['navigation'],
@@ -24,20 +23,20 @@ const ViewTaskScreen = ({ navigation, route }: ViewTaskScreenProps) => {
     const listPriorityLevel = [
         {
             id: '1',
-            label: PRIORITY_LEVEL.HIGH,
+            label: getPriorityLevel(PRIORITY_LEVEL.HIGH),
             value: PRIORITY_LEVEL.HIGH,
             selected: false
         },
         {
             id: '2',
-            label: PRIORITY_LEVEL.NORMAL,
+            label: getPriorityLevel(PRIORITY_LEVEL.NORMAL),
             value: PRIORITY_LEVEL.NORMAL,
             selected: false
 
         },
         {
             id: '3',
-            label: PRIORITY_LEVEL.LOW,
+            label: getPriorityLevel(PRIORITY_LEVEL.LOW),
             value: PRIORITY_LEVEL.LOW,
             selected: false
         }

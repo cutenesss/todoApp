@@ -19,6 +19,9 @@ const TaskSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
+    setListTask(state, action: PayloadAction<Array<ItemTaskProps>>) {
+      state.listTask = action.payload
+    },
     addTask(state, action: PayloadAction<ItemTaskProps>) {
       state.listTask = state.listTask.concat(action.payload)
     },
@@ -43,5 +46,5 @@ const TaskSlice = createSlice({
   },
 })
 
-export const { addTask, completeTask, deleteTask } = TaskSlice.actions
+export const { addTask, completeTask, deleteTask, setListTask } = TaskSlice.actions
 export default TaskSlice.reducer

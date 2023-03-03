@@ -1,28 +1,21 @@
 import React from 'react'
 import { View, ViewStyle, StyleSheet, Text } from 'react-native';
 import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
-import { PRIORITY_LEVEL } from '../../constant';
 
 interface RadioButtonGroupProps {
-    onPress: (value: PRIORITY_LEVEL) => void
+    onPress: (value: any) => void
     customStyle?: ViewStyle
-    initList?: Array<any>
+    initList?: Array<RadioButtonProps>
     title: string
-    initValue?: PRIORITY_LEVEL
+    initValue?: any
     disabled?: boolean
 }
 
-
-var radio_props = [
-    { label: 'param1', value: 0 },
-    { label: 'param2', value: 1 }
-];
-
-const RadioButtonGroup = ({ initList, onPress, customStyle, title, initValue, disabled }: RadioButtonGroupProps) => {
+export const RadioButtonGroup = ({ initList, onPress, customStyle, title, initValue, disabled }: RadioButtonGroupProps) => {
     const [listPriority, setListPriority] = React.useState<Array<RadioButtonProps>>([])
 
     const onPressRadioButton = (radioButtonsArray: Array<RadioButtonProps>) => {
-        onPress?.(radioButtonsArray.find(e => e.selected)?.value as PRIORITY_LEVEL ?? PRIORITY_LEVEL.NORMAL)
+        onPress?.(radioButtonsArray.find(e => e.selected)?.value as any)
         setListPriority(radioButtonsArray)
     }
 
@@ -57,7 +50,6 @@ const RadioButtonGroup = ({ initList, onPress, customStyle, title, initValue, di
     )
 }
 
-export default RadioButtonGroup
 const styles = StyleSheet.create({
     radio: {
         alignItems: 'flex-start'

@@ -23,7 +23,7 @@ describe("tests for taskSlice", () => {
         expect(afterAddReducerOperation.listTask[0].name).toBe(testItemSlice.name)
     });
 
-    test("completeTask", () => {
+    test("completeTask ", () => {
         const afterEditReducerOperation = TaskSlice(
             { listTask: [testItemSlice], completedTask: 0 },
             completeTask({ idItem: testItemSlice.id })
@@ -32,7 +32,16 @@ describe("tests for taskSlice", () => {
         expect(afterEditReducerOperation.completedTask).toBe(1)
     });
 
-    test("deleteTask", () => {
+    test("deleteTask and decrease completedTask", () => {
+        const afterEditReducerOperation = TaskSlice(
+            { listTask: [{...testItemSlice, isCompleted: true}], completedTask: 1 },
+            deleteTask({ idItem: testItemSlice.id })
+        );
+        expect(afterEditReducerOperation.listTask.length).toBe(0)
+        expect(afterEditReducerOperation.completedTask).toBe(0)
+    });
+
+    test("deleteTask without decrease completedTask", () => {
         const afterEditReducerOperation = TaskSlice(
             { listTask: [testItemSlice], completedTask: 0 },
             deleteTask({ idItem: testItemSlice.id })
