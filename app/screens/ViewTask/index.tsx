@@ -22,25 +22,27 @@ const ViewTaskScreen = ({ navigation, route }: ViewTaskScreenProps) => {
     const priorityRef = useRef<PRIORITY_LEVEL | ''>('')
     const listPriorityLevel = [
         {
-            id: '1',
+            id: 'priority_1',
             label: getPriorityLevel(PRIORITY_LEVEL.HIGH),
             value: PRIORITY_LEVEL.HIGH,
             selected: false
         },
         {
-            id: '2',
+            id: 'priority_2',
             label: getPriorityLevel(PRIORITY_LEVEL.NORMAL),
             value: PRIORITY_LEVEL.NORMAL,
             selected: false
 
         },
         {
-            id: '3',
+            id: 'priority_3',
             label: getPriorityLevel(PRIORITY_LEVEL.LOW),
             value: PRIORITY_LEVEL.LOW,
             selected: false
         }
     ]
+    
+    const returnAfterSuccess = () => navigation.goBack()
 
     // these function has been tested inside the component
     const resetText = useCallback(() => {
@@ -58,7 +60,7 @@ const ViewTaskScreen = ({ navigation, route }: ViewTaskScreenProps) => {
             )
             onAlert({
                 title: "Delete success",
-                okFunction: () => navigation.goBack()
+                okFunction: returnAfterSuccess
             })
         } else {
             if (nameRef.current.getText() === '') {
@@ -77,7 +79,7 @@ const ViewTaskScreen = ({ navigation, route }: ViewTaskScreenProps) => {
                 resetText()
                 onAlert({
                     title: 'Add success',
-                    okFunction: () => navigation.goBack()
+                    okFunction: returnAfterSuccess
                 })
             }
         }
@@ -90,7 +92,7 @@ const ViewTaskScreen = ({ navigation, route }: ViewTaskScreenProps) => {
             )
             onAlert({
                 title: "Completed task",
-                okFunction: () => navigation.goBack()
+                okFunction: returnAfterSuccess
             })
         }
     }

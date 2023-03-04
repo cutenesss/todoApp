@@ -65,20 +65,42 @@ describe("<ViewTask />", () => {
         expect(Alert.alert).toHaveBeenCalledWith('Add success')
     });
 
-    test('add item without name', () => {
+    test('add item without name alert correctly', () => {
         const { getByTestId, getByText } = render
             (
                 <Provider store={setupStore()}>
                     <ViewTask navigation={navigation} />
                 </Provider>
             )
-        const inputDescription = getByTestId(ID_INPUT_DESCRIPTION);
-        expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('')
-        fireEvent.changeText(inputDescription, 'description');
-        expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('description')
+        const inputName = getByTestId(ID_INPUT_NAME);
+        expect(getByTestId(ID_INPUT_NAME).props.value).toBe('')
+
         jest.spyOn(Alert, 'alert');
         fireEvent.press(getByText('Add'));
         expect(Alert.alert).toHaveBeenCalledWith("Enter task's name")
+    });
+
+    test('complete item correctly', () => {
+        const initialState = {
+            task: {
+                listTask: [testItemSlice],
+                completedTask: 0
+            }
+        };
+        const store = setupStore(initialState)
+        const { getByTestId, getByText } = render
+            (
+                <Provider store={store}>
+                    <ViewTask navigation={navigation} route={testRoute} />
+                </Provider>
+            )
+        const inputDescription = getByTestId(ID_INPUT_DESCRIPTION);
+        expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('description')
+        fireEvent.changeText(inputDescription, 'description');
+        expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('description')
+        jest.spyOn(Alert, 'alert');
+        fireEvent.press(getByText('Complete'));
+        expect(Alert.alert).toHaveBeenCalled()
     });
 
     test('delete item correctly', () => {
@@ -97,5 +119,8 @@ describe("<ViewTask />", () => {
             )
         expect(getByTestId(ID_INPUT_NAME).props.value).toBe('name');
         expect(getByTestId(ID_INPUT_DESCRIPTION).props.value).toBe('description');
+        jest.spyOn(Alert, 'alert');
+        fireEvent.press(getByText('Delete'));
+        expect(Alert.alert).toHaveBeenCalled()
     });
 });

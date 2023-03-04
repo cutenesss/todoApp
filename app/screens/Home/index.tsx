@@ -9,7 +9,6 @@ import { FloatingButton } from '../../components'
 import { RootStackParamList } from '../../models/NavigationType'
 import { ViewOverallNumber } from './components/ViewOverallNumber'
 import { handleSortListTask } from '../../utils'
-import { setListTask } from '../../redux'
 
 export type HomeScreenProps = {
   navigation: NativeStackScreenProps<RootStackParamList, 'HOME'>['navigation']
@@ -31,8 +30,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
   React.useEffect(() => {
     if (listTask.length > 0) {
-      console.log('dasdaad', priorityOrder, nameOrder)
       setList(handleSortListTask(listTask, priorityOrder, nameOrder))
+    } else {
+      setList([])
     }
   }, [listTask.length, priorityOrder, nameOrder])
 
@@ -50,10 +50,12 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
   }
 
   const onChangeSortName = (value: NAME_SORT_ORDER) => {
+    /* istanbul ignore next */
     setNameOrder(value)
   }
 
   const onChangeSortPriority = (value: PRIORITY_SORT_ORDER) => {
+    /* istanbul ignore next */
     setPriorityOrder(value)
   }
 

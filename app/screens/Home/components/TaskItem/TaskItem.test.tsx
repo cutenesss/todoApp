@@ -10,8 +10,14 @@ describe("<TaskItem />", () => {
         item: testItemSlice,
         onPress: mockOnPress
     }
-    test('renders correctly', () => {
+
+    test('renders correctly when task is not completed', () => {
         const tree = renderer.create(<TaskItem {...defaultProps} />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    test('renders correctly when task is completed', () => {
+        const tree = renderer.create(<TaskItem {...defaultProps} item={{...testItemSlice, isCompleted: true}} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 

@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx b/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
+index db1dcac..2799c2b 100644
+--- a/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
++++ b/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
+@@ -45,6 +45,7 @@ export default function RadioButton({
+     <>
+       <Pressable
+         onPress={handlePress}
++        testID={id}
+         style={[
+           styles.container,
+           orientation,

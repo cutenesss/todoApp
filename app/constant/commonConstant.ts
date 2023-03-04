@@ -1,7 +1,7 @@
 export enum PRIORITY_LEVEL {
-    HIGH = 3,
-    NORMAL = 2,
-    LOW = 1,
+    HIGH = '3',
+    NORMAL = '2',
+    LOW = '1',
 }
 
 export enum NAME_SORT_ORDER {

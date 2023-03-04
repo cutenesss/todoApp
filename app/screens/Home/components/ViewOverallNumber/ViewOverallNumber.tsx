@@ -5,13 +5,13 @@ import { NAME_SORT_ORDER, PRIORITY_SORT_ORDER } from '../../../../constant'
 
 const listSortName = [
   {
-    id: '1',
+    id: 'listSortName_1',
     label: NAME_SORT_ORDER.A_Z,
     value: NAME_SORT_ORDER.A_Z,
     selected: true
   },
   {
-    id: '2',
+    id: 'listSortName_2',
     label: NAME_SORT_ORDER.Z_A,
     value: NAME_SORT_ORDER.Z_A,
     selected: false
@@ -19,13 +19,13 @@ const listSortName = [
 ]
 const listPriorityLevel = [
   {
-    id: '1',
+    id: 'listPriorityLevel_1',
     label: PRIORITY_SORT_ORDER.DECREASE,
     value: PRIORITY_SORT_ORDER.DECREASE,
     selected: true
   },
   {
-    id: '2',
+    id: 'listPriorityLevel_2',
     label: PRIORITY_SORT_ORDER.INCREASE,
     value: PRIORITY_SORT_ORDER.INCREASE,
     selected: false

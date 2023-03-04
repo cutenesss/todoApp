@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TaskItem /> renders correctly 1`] = `
+exports[`<TaskItem /> renders correctly when task is completed 1`] = `
 <View
   accessible={true}
   collapsable={false}
@@ -37,10 +37,11 @@ exports[`<TaskItem /> renders correctly 1`] = `
       Object {
         "color": "#000",
         "fontSize": 15,
+        "fontWeight": "bold",
       }
     }
   >
-    Name: name - Not complete
+    Name: name - Completed
   </Text>
   <Text
     numberOfLines={1}
@@ -48,8 +49,7 @@ exports[`<TaskItem /> renders correctly 1`] = `
       Object {
         "color": "#000",
         "fontSize": 13,
-        "fontWeight": "bold",
-        "marginTop": 10,
+        "marginTop": 8,
       }
     }
   >
@@ -62,8 +62,79 @@ exports[`<TaskItem /> renders correctly 1`] = `
       Object {
         "color": "#000",
         "fontSize": 13,
+        "marginTop": 8,
+      }
+    }
+  >
+    Priority level: 
+    Normal
+  </Text>
+</View>
+`;
+
+exports[`<TaskItem /> renders correctly when task is not completed 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderRadius": 10,
+      "elevation": 5,
+      "margin": 10,
+      "opacity": 1,
+      "padding": 10,
+      "shadowColor": "#000",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.25,
+      "shadowRadius": 3.84,
+    }
+  }
+  testID="TaskItem_123"
+>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 15,
         "fontWeight": "bold",
-        "marginTop": 10,
+      }
+    }
+  >
+    Name: name - Not complete
+  </Text>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 13,
+        "marginTop": 8,
+      }
+    }
+  >
+    Description: 
+    description
+  </Text>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 13,
+        "marginTop": 8,
       }
     }
   >
